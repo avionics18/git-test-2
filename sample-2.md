@@ -13,3 +13,13 @@ git pull
 # Hard Reset (Destroys Local Changes)
 git reset --hard origin/main
 ```
+
+### More Commands
+
+```bash
+git branch
+git branch dev # creates a new branch dev
+git branch -d dev # deletes the branch dev
+git checkout dev # switches to dev branch
+git checkout -b dev # creates a new branch dev and checksout to it
+```
