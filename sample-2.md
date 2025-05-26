@@ -23,3 +23,5 @@ git branch -d dev # deletes the branch dev
 git checkout dev # switches to dev branch
 git checkout -b dev # creates a new branch dev and checksout to it
 ```
+
+We will see more in later stages.
