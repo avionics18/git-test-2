@@ -6,6 +6,19 @@ This guide provides a detailed explanation of commonly used Git commands. Unders
 
 ## Core Workflow Commands
 
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+	int x, y;
+	cin >> x >> y;
+	cout << "Sum of two nums = " << (x + y);
+
+	return 0;
+}
+```
+
 These are the commands you'll use most frequently in your day-to-day Git workflow.
 
 ### `git status`
@@ -14,11 +27,11 @@ These are the commands you'll use most frequently in your day-to-day Git workflo
 
 **What it does:**
 
-- Lists files that have been modified in your working directory but not yet staged (added to the index).
-- Lists files that are staged and ready to be committed.
-- Lists untracked files (new files that Git doesn't know about yet).
-- Indicates which branch you are currently on.
-- Tells you if your current branch is ahead of, behind, or diverged from its remote counterpart.
+-   Lists files that have been modified in your working directory but not yet staged (added to the index).
+-   Lists files that are staged and ready to be committed.
+-   Lists untracked files (new files that Git doesn't know about yet).
+-   Indicates which branch you are currently on.
+-   Tells you if your current branch is ahead of, behind, or diverged from its remote counterpart.
 
 **When to use it:** Frequently! Use it before `git add` to see what you're about to stage, before `git commit` to see what's staged, and after `git pull` or `git merge` to understand the state of your repository.
 
@@ -48,23 +61,23 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 **What it does:**
 
-- Shows commits in reverse chronological order (most recent first).
-- For each commit, it typically displays:
-  - The unique SHA-1 hash of the commit.
-  - The author's name and email.
-  - The date and time the commit was made.
-  - The commit message.
+-   Shows commits in reverse chronological order (most recent first).
+-   For each commit, it typically displays:
+    -   The unique SHA-1 hash of the commit.
+    -   The author's name and email.
+    -   The date and time the commit was made.
+    -   The commit message.
 
 **Common Options:**
 
-- `--oneline`: Shows a condensed, one-line summary of each commit.
-- `--graph`: Displays an ASCII graph showing branch and merge history.
-- `--decorate`: Shows branch and tag names next to commits.
-- `--all`: Shows the history of all branches, not just the current one.
-- `-p` or `--patch`: Shows the changes (diff) introduced by each commit.
-- `--stat`: Shows a summary of files changed and lines added/deleted for each commit.
-- `<branch_name>`: Shows the log for a specific branch.
-- `<file_path>`: Shows the log for commits that affected a specific file.
+-   `--oneline`: Shows a condensed, one-line summary of each commit.
+-   `--graph`: Displays an ASCII graph showing branch and merge history.
+-   `--decorate`: Shows branch and tag names next to commits.
+-   `--all`: Shows the history of all branches, not just the current one.
+-   `-p` or `--patch`: Shows the changes (diff) introduced by each commit.
+-   `--stat`: Shows a summary of files changed and lines added/deleted for each commit.
+-   `<branch_name>`: Shows the log for a specific branch.
+-   `<file_path>`: Shows the log for commits that affected a specific file.
 
 **When to use it:** To review past changes, understand the project's evolution, find when a specific change was introduced, or inspect the work of collaborators.
 
@@ -87,9 +100,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 **What it does:**
 
-- `git add .`: Stages all modified and new untracked files in the current directory and its subdirectories.
-- `git add <file_name>`: Stages specific changes in the named file.
-- `git add <directory_name>/`: Stages all changes within the specified directory.
+-   `git add .`: Stages all modified and new untracked files in the current directory and its subdirectories.
+-   `git add <file_name>`: Stages specific changes in the named file.
+-   `git add <directory_name>/`: Stages all changes within the specified directory.
 
 The staging area is a "holding zone" where you prepare your next commit. You selectively add the changes you want to include in the upcoming snapshot.
 
@@ -101,15 +114,15 @@ The staging area is a "holding zone" where you prepare your next commit. You sel
 
 **What it does:**
 
-- Takes all the changes that have been added to the staging area (via `git add`) and creates a new commit object.
-- This commit object is a snapshot of your project at that point in time.
-- Each commit has a unique SHA-1 hash, an author, a timestamp, and a commit message.
-- The `-m "message"` flag allows you to provide a commit message directly on the command line. If you omit `-m`, Git will open your configured text editor for you to write a more detailed message.
+-   Takes all the changes that have been added to the staging area (via `git add`) and creates a new commit object.
+-   This commit object is a snapshot of your project at that point in time.
+-   Each commit has a unique SHA-1 hash, an author, a timestamp, and a commit message.
+-   The `-m "message"` flag allows you to provide a commit message directly on the command line. If you omit `-m`, Git will open your configured text editor for you to write a more detailed message.
 
 **Commit Message Best Practices:**
 
-- **Subject Line:** Concise (around 50 characters), imperative mood (e.g., "Fix bug" not "Fixed bug").
-- **Body (Optional):** If needed, provide more context after a blank line. Explain _why_ the change was made, not just _what_ changed.
+-   **Subject Line:** Concise (around 50 characters), imperative mood (e.g., "Fix bug" not "Fixed bug").
+-   **Body (Optional):** If needed, provide more context after a blank line. Explain _why_ the change was made, not just _what_ changed.
 
 **When to use it:** After staging changes with `git add` and when you're ready to save a meaningful snapshot of your work.
 
@@ -119,18 +132,18 @@ The staging area is a "holding zone" where you prepare your next commit. You sel
 
 **What it does:**
 
-- `git push`: The base command.
-- `origin`: The name of the remote repository (a common default, especially when you clone a repository). You can have multiple remotes.
-- `main`: The name of the local branch whose commits you want to send to the remote. This also specifies the name of the branch on the remote that will be updated.
+-   `git push`: The base command.
+-   `origin`: The name of the remote repository (a common default, especially when you clone a repository). You can have multiple remotes.
+-   `main`: The name of the local branch whose commits you want to send to the remote. This also specifies the name of the branch on the remote that will be updated.
 
 If the remote branch has new commits that you don't have locally, the push will be rejected (as seen in your error example) to prevent overwriting history. You'll need to `git pull` first in such cases.
 
 **Common Options:**
 
-- `-u` or `--set-upstream`: Sets the remote branch as the "upstream" for your local branch. This means future `git pull` (without arguments) and `git push` (without arguments) will automatically know where to fetch from and push to. Example: `git push -u origin main`.
-- `--all`: Pushes all your local branches to the remote.
-- `--tags`: Pushes all your local tags to the remote.
-- `--force`: **Use with extreme caution!** Overwrites the remote branch with your local branch, even if it means losing commits on the remote.
+-   `-u` or `--set-upstream`: Sets the remote branch as the "upstream" for your local branch. This means future `git pull` (without arguments) and `git push` (without arguments) will automatically know where to fetch from and push to. Example: `git push -u origin main`.
+-   `--all`: Pushes all your local branches to the remote.
+-   `--tags`: Pushes all your local tags to the remote.
+-   `--force`: **Use with extreme caution!** Overwrites the remote branch with your local branch, even if it means losing commits on the remote.
 
 **When to use it:** When you want to share your committed local changes with collaborators or back them up on a remote server.
 
@@ -140,8 +153,8 @@ If the remote branch has new commits that you don't have locally, the push will 
 
 **What it does:**
 
-- The `-v` (verbose) flag shows the URLs for both fetching and pushing.
-- Each remote has a short "name" (e.g., `origin`) and one or two URLs.
+-   The `-v` (verbose) flag shows the URLs for both fetching and pushing.
+-   Each remote has a short "name" (e.g., `origin`) and one or two URLs.
 
 **When to use it:** To see where your local repository is connected for fetching and pushing, or to verify remote URLs.
 
@@ -162,14 +175,14 @@ upstream https://github.com/original-owner/their-repo.git (push)
 
 **What it does:**
 
-- `git remote add`: The command to add a remote.
-- `origin`: The short name you want to use to refer to this remote (e.g., `origin`, `upstream`, `heroku`). `origin` is a common convention for the primary remote.
-- `<repo_url>`: The URL of the remote Git repository (e.g., `https://github.com/user/repo.git` or `git@github.com:user/repo.git`).
+-   `git remote add`: The command to add a remote.
+-   `origin`: The short name you want to use to refer to this remote (e.g., `origin`, `upstream`, `heroku`). `origin` is a common convention for the primary remote.
+-   `<repo_url>`: The URL of the remote Git repository (e.g., `https://github.com/user/repo.git` or `git@github.com:user/repo.git`).
 
 **When to use it:**
 
-- After creating a new local repository with `git init` and you want to connect it to a newly created empty repository on a hosting service like GitHub.
-- When you want to add a connection to another developer's fork or a different upstream repository.
+-   After creating a new local repository with `git init` and you want to connect it to a newly created empty repository on a hosting service like GitHub.
+-   When you want to add a connection to another developer's fork or a different upstream repository.
 
 ### `git pull` (or `git pull origin main`)
 
@@ -177,14 +190,14 @@ upstream https://github.com/original-owner/their-repo.git (push)
 
 **What it does:**
 
-- It's essentially a combination of `git fetch` (which downloads remote changes but doesn't integrate them) followed by `git merge` (which integrates the fetched changes).
-- `git pull`: If your current branch is tracking a remote branch, Git will pull from that tracked branch.
-- `git pull origin main`: Explicitly tells Git to fetch from the `main` branch of the `origin` remote and merge it into your current local branch.
+-   It's essentially a combination of `git fetch` (which downloads remote changes but doesn't integrate them) followed by `git merge` (which integrates the fetched changes).
+-   `git pull`: If your current branch is tracking a remote branch, Git will pull from that tracked branch.
+-   `git pull origin main`: Explicitly tells Git to fetch from the `main` branch of the `origin` remote and merge it into your current local branch.
 
 **Common Options:**
 
-- `--rebase`: Instead of merging, it rebases your local commits on top of the fetched remote commits. This can lead to a cleaner, more linear history but rewrites your local commits.
-- `--ff-only`: Only perform a fast-forward merge. If the remote history has diverged, the pull will fail instead of creating a merge commit.
+-   `--rebase`: Instead of merging, it rebases your local commits on top of the fetched remote commits. This can lead to a cleaner, more linear history but rewrites your local commits.
+-   `--ff-only`: Only perform a fast-forward merge. If the remote history has diverged, the pull will fail instead of creating a merge commit.
 
 **When to use it:** To update your local branch with the latest changes from the remote repository. Be prepared to resolve merge conflicts if both local and remote histories have diverged and made changes to the same parts of files.
 
@@ -204,18 +217,18 @@ upstream https://github.com/original-owner/their-repo.git (push)
 
 **When to use it (CAREFULLY):**
 
-- When you want to completely discard all your local commits and changes on the current branch and make it identical to the state of the remote branch.
-- If your local branch is a mess and you just want to start fresh from what's on the remote.
+-   When you want to completely discard all your local commits and changes on the current branch and make it identical to the state of the remote branch.
+-   If your local branch is a mess and you just want to start fresh from what's on the remote.
 
 **DANGER:**
 
-- **This command is destructive to uncommitted local work.** There is generally no way to recover changes that were in your working directory or staging area but not committed if you use `git reset --hard`.
-- If you have local commits that you haven't pushed, this command will remove them from the current branch. You might still be able to recover them using `git reflog` for a while, but it's best to be sure before running this.
+-   **This command is destructive to uncommitted local work.** There is generally no way to recover changes that were in your working directory or staging area but not committed if you use `git reset --hard`.
+-   If you have local commits that you haven't pushed, this command will remove them from the current branch. You might still be able to recover them using `git reflog` for a while, but it's best to be sure before running this.
 
 **Safer Alternatives (if you want to save local changes):**
 
-- `git stash` to temporarily save local changes.
-- Commit your local changes to a temporary branch before resetting.
+-   `git stash` to temporarily save local changes.
+-   Commit your local changes to a temporary branch before resetting.
 
 ---
 
@@ -229,10 +242,10 @@ These commands are essential for managing different lines of development within 
 
 **What it does:**
 
-- `git branch` (with no arguments): Lists all your local branches. The current branch will be marked with an asterisk (`*`).
-- `-a`: Lists all branches (local and remote-tracking).
-- `-v`: Shows the last commit on each branch (verbose).
-- `-vv`: Shows even more details, including the upstream branch being tracked (if any) and whether the local branch is ahead/behind.
+-   `git branch` (with no arguments): Lists all your local branches. The current branch will be marked with an asterisk (`*`).
+-   `-a`: Lists all branches (local and remote-tracking).
+-   `-v`: Shows the last commit on each branch (verbose).
+-   `-vv`: Shows even more details, including the upstream branch being tracked (if any) and whether the local branch is ahead/behind.
 
 **When to use it:** To see what branches exist, which one you're on, or to get a quick overview of branch states.
 
@@ -244,9 +257,9 @@ _(e.g., `git branch dev`)_
 
 **What it does:**
 
-- Creates a new branch named `<branch-name>`.
-- This new branch will point to the **same commit** as your current `HEAD` (the branch you are currently on).
-- **It does NOT switch you to the new branch.** You remain on your current branch.
+-   Creates a new branch named `<branch-name>`.
+-   This new branch will point to the **same commit** as your current `HEAD` (the branch you are currently on).
+-   **It does NOT switch you to the new branch.** You remain on your current branch.
 
 **When to use it:** When you want to start a new line of development (for a feature, bugfix, experiment) but aren't ready to switch to it immediately.
 
@@ -258,9 +271,9 @@ _(e.g., `git branch -d dev`)_
 
 **What it does:**
 
-- Deletes the specified local branch.
-- **Safety Check:** By default, Git will prevent you from deleting a branch if it contains unmerged commits (commits that are not part of any other branch in your repository). This helps prevent accidental data loss.
-- `-D` (capital D): Force-deletes the branch, even if it has unmerged changes. **Use with caution!**
+-   Deletes the specified local branch.
+-   **Safety Check:** By default, Git will prevent you from deleting a branch if it contains unmerged commits (commits that are not part of any other branch in your repository). This helps prevent accidental data loss.
+-   `-D` (capital D): Force-deletes the branch, even if it has unmerged changes. **Use with caution!**
 
 **When to use it:** After a feature branch has been successfully merged into your main branch and is no longer needed.
 
@@ -288,9 +301,9 @@ _(e.g., `git checkout -b dev`)_
 
 **What it does:**
 
-- This is a convenient shorthand for running:
-  1.  `git branch <new-branch-name>` (creates the branch)
-  2.  `git checkout <new-branch-name>` (switches to the new branch)
-- The new branch is created pointing to the current `HEAD`.
+-   This is a convenient shorthand for running:
+    1.  `git branch <new-branch-name>` (creates the branch)
+    2.  `git checkout <new-branch-name>` (switches to the new branch)
+-   The new branch is created pointing to the current `HEAD`.
 
 **When to use it:** This is the most common way to start working on a new feature or bugfix. You create the branch and are immediately ready to start making commits on it.
