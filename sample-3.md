@@ -13,8 +13,8 @@ This usually appears when:
 
 **The URLs:**
 
-- **HTTPS/SSH:** These are the standard URLs for cloning or pulling from the _contributor's_ repository (the fork where the changes live).
-- **Patch:** This provides a `.patch` file. You could download this and apply it using `git apply`, but the instructions given are generally a more robust way to handle it, especially for multiple commits.
+-   **HTTPS/SSH:** These are the standard URLs for cloning or pulling from the _contributor's_ repository (the fork where the changes live).
+-   **Patch:** This provides a `.patch` file. You could download this and apply it using `git apply`, but the instructions given are generally a more robust way to handle it, especially for multiple commits.
 
 **Step 1: From your project repository, check out a new branch and test the changes.**
 
@@ -24,17 +24,17 @@ This step is about bringing the contributor's changes into _your local copy_ of 
 git checkout -b avionics18-avinash main
 ```
 
-- **`git checkout -b avionics18-avinash`**:
-  - `-b avionics18-avinash`: This creates a **new local branch** in your repository. The name `avionics18-avinash` is a suggestion; it combines the contributor's username and the name of their branch to make it clear where these changes originated.
-  - `main`: This specifies that the new branch (`avionics18-avinash`) should be created starting from your current local `main` branch. So, initially, this new branch will be identical to your `main`.
+-   **`git checkout -b avionics18-avinash`**:
+    -   `-b avionics18-avinash`: This creates a **new local branch** in your repository. The name `avionics18-avinash` is a suggestion; it combines the contributor's username and the name of their branch to make it clear where these changes originated.
+    -   `main`: This specifies that the new branch (`avionics18-avinash`) should be created starting from your current local `main` branch. So, initially, this new branch will be identical to your `main`.
 
 ```bash
 git pull https://github.com/avionics18/git-test.git avinash
 ```
 
-- **`git pull`**: This command fetches changes from a remote repository and then tries to merge them into your current branch.
-- **`https://github.com/avionics18/git-test.git`**: This is the URL of the **contributor's fork** (or the remote repository where their changes are).
-- **`avinash`**: This specifies that you want to pull the changes from the `avinash` branch _in that contributor's repository_.
+-   **`git pull`**: This command fetches changes from a remote repository and then tries to merge them into your current branch.
+-   **`https://github.com/avionics18/git-test.git`**: This is the URL of the **contributor's fork** (or the remote repository where their changes are).
+-   **`avinash`**: This specifies that you want to pull the changes from the `avinash` branch _in that contributor's repository_.
 
 **What happens in Step 1:**
 
@@ -51,32 +51,31 @@ Once you're satisfied with the changes in the local `avionics18-avinash` branch,
 git checkout main
 ```
 
-- Switch back to your main local branch.
+-   Switch back to your main local branch.
 
 ```bash
 git merge --no-ff avionics18-avinash
 ```
 
-- **`git merge avionics18-avinash`**: This merges the changes from your local `avionics18-avinash` branch (which now contains the contributor's work) into your local `main` branch.
-- **`--no-ff`**: This flag stands for "no fast-forward."
-  - By default, if the branch you're merging (`avionics18-avinash`) is a direct descendant of your current branch (`main`) (i.e., no new commits have been made on `main` since `avionics18-avinash` was created or last synced with it), Git would perform a "fast-forward" merge. This simply moves the `main` branch pointer forward to point to the same commit as `avionics18-avinash`.
-  - Using `--no-ff` **forces Git to create a new merge commit**, even if a fast-forward merge is possible. This is often preferred for merging feature branches or pull requests because the merge commit explicitly records the act of integration and makes it easier to see in the history where the feature was merged in. It keeps the history of the feature branch separate until the merge point.
+-   **`git merge avionics18-avinash`**: This merges the changes from your local `avionics18-avinash` branch (which now contains the contributor's work) into your local `main` branch.
+-   **`--no-ff`**: This flag stands for "no fast-forward."
+    -   By default, if the branch you're merging (`avionics18-avinash`) is a direct descendant of your current branch (`main`) (i.e., no new commits have been made on `main` since `avionics18-avinash` was created or last synced with it), Git would perform a "fast-forward" merge. This simply moves the `main` branch pointer forward to point to the same commit as `avionics18-avinash`.
+    -   Using `--no-ff` **forces Git to create a new merge commit**, even if a fast-forward merge is possible. This is often preferred for merging feature branches or pull requests because the merge commit explicitly records the act of integration and makes it easier to see in the history where the feature was merged in. It keeps the history of the feature branch separate until the merge point.
 
 ```bash
+# Pushes the local main branch to github branch
 git push origin main
 ```
 
-- Push your local `main` branch (which now includes the merged changes) to your remote repository on GitHub (assuming your remote is named `origin`).
+-   Push your local `main` branch (which now includes the merged changes) to your remote repository on GitHub (assuming your remote is named `origin`).
 
 **Why this process?**
 
-- **Isolation for Testing:** You test the changes in a separate branch (`avionics18-avinash`) so you don't mess up your `main` branch if the changes are problematic.
-- **Clean History:** Using `--no-ff` for the final merge into `main` creates a clear merge commit, which is good for project history and makes it easier to revert the entire set of changes from the pull request if needed later (by reverting the merge commit).
-- **Local Control:** You have full control to inspect, modify, or even add commits to the `avionics18-avinash` branch before merging it into `main`.
+-   **Isolation for Testing:** You test the changes in a separate branch (`avionics18-avinash`) so you don't mess up your `main` branch if the changes are problematic.
+-   **Clean History:** Using `--no-ff` for the final merge into `main` creates a clear merge commit, which is good for project history and makes it easier to revert the entire set of changes from the pull request if needed later (by reverting the merge commit).
+-   **Local Control:** You have full control to inspect, modify, or even add commits to the `avionics18-avinash` branch before merging it into `main`.
 
 **In essence, these instructions are a best-practice workflow for integrating external contributions into your project via the command line.**
-
-Okay, understood. We'll continue the topic of these Git command-line instructions for manually merging a pull request, assuming the context and steps are now clear.
 
 ---
 
@@ -88,31 +87,31 @@ While the two-step process outlined is the core of manually handling a pull requ
 
 Before even creating the temporary branch and pulling, you might want to inspect the changes offered in the pull request more thoroughly.
 
-- **Using `git fetch` and `git log`:**
-  You can add the contributor's fork as a temporary remote, fetch their branch, and then use `git log` to see the commits they've made.
+-   **Using `git fetch` and `git log`:**
+    You can add the contributor's fork as a temporary remote, fetch their branch, and then use `git log` to see the commits they've made.
 
-  ```bash
-  # Add the contributor's fork as a temporary remote (e.g., 'contributor_fork')
-  git remote add contributor_fork https://github.com/avionics18/git-test.git
+    ```bash
+    # Add the contributor's fork as a temporary remote (e.g., 'contributor_fork')
+    git remote add contributor_fork https://github.com/avionics18/git-test.git
 
-  # Fetch all branches from this temporary remote
-  git fetch contributor_fork
+    # Fetch all branches from this temporary remote
+    git fetch contributor_fork
 
-  # View the log of the contributor's branch (e.g., 'avinash')
-  # This shows commits on contributor_fork/avinash that are not on your local main
-  git log main..contributor_fork/avinash --oneline --graph --decorate
+    # View the log of the contributor's branch (e.g., 'avinash')
+    # This shows commits on contributor_fork/avinash that are not on your local main
+    git log main..contributor_fork/avinash --oneline --graph --decorate
 
-  # To see the actual changes (diffs)
-  git log -p main..contributor_fork/avinash
-  ```
+    # To see the actual changes (diffs)
+    git log -p main..contributor_fork/avinash
+    ```
 
-  After inspecting, you can remove the temporary remote if you wish:
+    After inspecting, you can remove the temporary remote if you wish:
 
-  ```bash
-  git remote remove contributor_fork
-  ```
+    ```bash
+    git remote remove contributor_fork
+    ```
 
-- **Viewing Diffs on GitHub:** GitHub's pull request interface provides excellent diff views. You can review the code line-by-line, comment, and discuss changes directly on the platform before deciding to pull them locally.
+-   **Viewing Diffs on GitHub:** GitHub's pull request interface provides excellent diff views. You can review the code line-by-line, comment, and discuss changes directly on the platform before deciding to pull them locally.
 
 ### Handling Merge Conflicts Locally
 
@@ -125,15 +124,15 @@ If, during `Step 1` (`git pull ...`) or `Step 2` (`git merge ...`), Git encounte
     git add <conflicted_file_name>
     ```
 4.  **Complete the Merge/Pull:**
-    - If the conflict occurred during `git pull` (which includes a merge), you just need to commit once all conflicts are resolved and staged:
-      ```bash
-      git commit
-      ```
-      Git will usually pre-fill a commit message for the merge.
-    - If the conflict occurred during the `git merge avionics18-avinash` in `Step 2`, then after resolving and staging, run:
-      ```bash
-      git commit
-      ```
+    -   If the conflict occurred during `git pull` (which includes a merge), you just need to commit once all conflicts are resolved and staged:
+        ```bash
+        git commit
+        ```
+        Git will usually pre-fill a commit message for the merge.
+    -   If the conflict occurred during the `git merge avionics18-avinash` in `Step 2`, then after resolving and staging, run:
+        ```bash
+        git commit
+        ```
 
 ### Rebasing Instead of Merging (Alternative to `git pull`)
 
@@ -180,15 +179,11 @@ Branch protection rules on GitHub can prevent direct pushes to certain branches 
 
 1.  You **must** merge the pull request through the GitHub interface (if allowed by protection rules and all checks pass).
 2.  Or, if you need to make local modifications/fixes to the PR code:
-    - Follow Step 1 as described (checkout a new branch, pull PR changes into it).
-    - Make your additional commits on this local PR branch.
-    - **Push this modified PR branch to your own fork/repository on GitHub.**
-    - Then, either:
-      - Open a _new_ pull request from your modified branch to the original `main` branch.
-      - Or, if the original PR was from a branch within the same repository (not a fork) and you have permissions, you could push your changes to _that_ PR branch to update it (though this can be confusing if the original contributor is also working on it).
+    -   Follow Step 1 as described (checkout a new branch, pull PR changes into it).
+    -   Make your additional commits on this local PR branch.
+    -   **Push this modified PR branch to your own fork/repository on GitHub.**
+    -   Then, either:
+        -   Open a _new_ pull request from your modified branch to the original `main` branch.
+        -   Or, if the original PR was from a branch within the same repository (not a fork) and you have permissions, you could push your changes to _that_ PR branch to update it (though this can be confusing if the original contributor is also working on it).
 
 The key is that if `main` is protected against direct pushes, your final `git push origin main` will fail. The integration must happen via a mechanism allowed by the branch protection rules, which is typically merging a pull request on GitHub.
-
----
-
-These manual steps provide fine-grained control over how contributions are integrated. While GitHub's "Merge pull request" button is convenient, understanding this command-line workflow is invaluable for more complex scenarios, local testing, and resolving conflicts effectively.
